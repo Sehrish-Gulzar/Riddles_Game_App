@@ -1,5 +1,6 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+
+import 'main.dart';
 
 class StartGame extends StatefulWidget {
   const StartGame({super.key});
@@ -9,35 +10,12 @@ class StartGame extends StatefulWidget {
 }
 
 class _StartGameState extends State<StartGame> {
-  late AssetsAudioPlayer audioPlayer;
-  bool isMusicPlaying = true;
-  bool isDialogVisible = false;
-  void playBackgroundMusic() {
-    audioPlayer.open(
-      Audio('assets/audio/lofi-ambient-pianoline-03-116136.mp3'),
-      showNotification: false,
-      loopMode: LoopMode.single,
-    );
-  }
-
-  void toggleBackgroundMusic() {
-    if (!isDialogVisible) {
-      if (isMusicPlaying) {
-        audioPlayer.pause();
-      } else {
-        audioPlayer.play();
-      }
-      setState(() {
-        isMusicPlaying = !isMusicPlaying;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
+          alignment: Alignment.center,
           fit: StackFit.expand,
           children: <Widget>[
             Image(
@@ -61,29 +39,43 @@ class _StartGameState extends State<StartGame> {
                 ),
               ),
             ),
-            Positioned(
-              top: 16,
-              right: 10,
-              child: IconButton(
-                icon: Icon(isMusicPlaying ? Icons.volume_up : Icons.volume_off),
-                color: Color(0xff5a0587),
-                onPressed: toggleBackgroundMusic,
+            Container(
+              child: Opacity(
+                opacity: 0.5,
+                child: Image(
+                  image: AssetImage(
+                    "assets/images/5210980-removebg-preview.png",
+                  ),
+                  width: 300,
+                  filterQuality: FilterQuality.high,
+                ),
               ),
             ),
-            Positioned(
-              top: 200,
-              right: 16,
-              child: Container(
-                child: Opacity(
-                  opacity: 0.7,
-                  child: Image(
-                    image: AssetImage(
-                      "assets/images/5210980-removebg-preview.png",
+            Padding(
+              padding: const EdgeInsets.only(top: 115, left: 20, right: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff5a0587),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => RiddleGame()),
+                        );
+                      },
+                      child: Text('Start Game'),
                     ),
-                    width: 300,
-                    filterQuality: FilterQuality.high,
                   ),
-                ),
+                ],
               ),
             ),
           ],
