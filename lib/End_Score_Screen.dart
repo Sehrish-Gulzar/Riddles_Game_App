@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'Riddle_Game_Screen.dart';
-import 'main.dart';
 
 class EndGamePage extends StatelessWidget {
   final int score;
@@ -121,7 +120,8 @@ class EndGamePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => RiddleGame()),
+                          MaterialPageRoute(
+                              builder: (context) => RiddleGamePage()),
                         );
                         Navigator.pop(context);
                       },

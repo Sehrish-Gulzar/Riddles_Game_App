@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
+import 'Riddle_Game_Screen.dart';
 
 class StartGame extends StatefulWidget {
   const StartGame({super.key});
@@ -69,7 +69,8 @@ class _StartGameState extends State<StartGame> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => RiddleGame()),
+                          MaterialPageRoute(
+                              builder: (context) => RiddleGamePage()),
                         );
                       },
                       child: Text('Start Game'),
