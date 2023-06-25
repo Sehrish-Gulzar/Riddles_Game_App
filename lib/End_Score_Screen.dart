@@ -123,7 +123,6 @@ class EndGamePage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => RiddleGamePage()),
                         );
-                        Navigator.pop(context);
                       },
                       child: Text('Play Again'),
                     ),
